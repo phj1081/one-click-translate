@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "원클릭 화면 번역 도우미",
+  "version": "1.0",
+  "description": "클릭 한 번으로 현재 화면을 캡처해 구글 번역 이미지 탭을 엽니다.",
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "clipboardWrite",
+    "scripting",
+    "notifications",
+    "storage",
+    "offscreen"
+  ],
+  "host_permissions": [
+    "https://translate.google.com/*",
+    "https://*.google.com/*",
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_icon": "icon128.png",
+    "default_title": "현재 화면을 번역합니다"
+  },
+  "commands": {
+    "translate-screen": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+2",
+        "mac": "Command+Shift+2"
+      },
+      "description": "현재 화면 번역"
+    }
+  }
+}

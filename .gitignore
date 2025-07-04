@@ -1,0 +1,22 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Chrome extension build files
+*.zip
+*.crx
+*.pem
+
+# Temporary files
+*.tmp
+*.temp

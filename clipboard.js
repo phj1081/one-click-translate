@@ -27,6 +27,9 @@ async function copyImageToClipboard(dataUrl) {
   const statusEl = document.getElementById('status');
   
   try {
+    // 구글 번역 페이지를 미리 새 창으로 열기 (병렬 처리)
+    const translateWindow = window.open('https://translate.google.com/?sl=auto&tl=ko&op=images', '_blank');
+    
     // 이미지를 메모리에서만 로드 (미리보기 없이)
     const img = new Image();
     img.src = dataUrl;
@@ -40,12 +43,12 @@ async function copyImageToClipboard(dataUrl) {
     const canvas = document.createElement('canvas');
     canvas.width = img.naturalWidth;
     canvas.height = img.naturalHeight;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { willReadFrequently: false }); // 성능 최적화
     ctx.drawImage(img, 0, 0);
     
-    // Canvas를 Blob으로 변환
+    // Canvas를 Blob으로 변환 (품질 조정으로 속도 향상)
     const blob = await new Promise((resolve) => {
-      canvas.toBlob(resolve, 'image/png');
+      canvas.toBlob(resolve, 'image/png', 0.95); // 95% 품질로 속도 향상
     });
     
     if (!blob) {
@@ -65,11 +68,13 @@ async function copyImageToClipboard(dataUrl) {
     instructionEl.style.marginTop = '20px';
     instructionEl.style.fontSize = '16px';
     instructionEl.style.color = '#666';
-    instructionEl.innerHTML = '구글 번역 페이지로 이동 중...<br><strong>Cmd+V (Ctrl+V)</strong>로 이미지를 붙여넣으세요';
+    instructionEl.innerHTML = '구글 번역 페이지가 열렸습니다!<br><strong>Cmd+V (Ctrl+V)</strong>로 이미지를 붙여넣으세요';
     statusEl.parentElement.appendChild(instructionEl);
     
-    // 구글 번역 페이지를 현재 탭에서 열기 (딜레이 없이 즉시)
-    window.location.href = 'https://translate.google.com/?sl=auto&tl=ko&op=images';
+    // 1초 후 현재 창 닫기 (사용자가 메시지를 볼 시간 제공)
+    setTimeout(() => {
+      window.close();
+    }, 1000);
     
   } catch (error) {
     console.error('클립보드 복사 실패:', error);

@@ -7,18 +7,13 @@
 - 🖼️ **원클릭 화면 캡처**: 현재 보고 있는 웹페이지를 즉시 스크린샷으로 캡처
 - 📋 **자동 클립보드 복사**: 캡처한 이미지를 자동으로 클립보드에 복사
 - 🌐 **Google 번역 연동**: Google 번역 이미지 번역 페이지로 자동 이동
-- ⌨️ **단축키 지원**: `Ctrl+Shift+2` (Mac: `Cmd+Shift+2`)로 빠르게 실행
+- ⌨️ **단축키 지원**: `Ctrl+Shift+1` (Mac: `Cmd+Shift+1`)로 빠르게 실행
 
 ## 설치 방법
 
-### Chrome 웹 스토어에서 설치 (권장)
-1. [Chrome 웹 스토어]에서 "원클릭 화면 번역 도우미" 검색
-2. "Chrome에 추가" 버튼 클릭
-
-### 개발자 모드로 설치
 1. 이 저장소를 클론하거나 다운로드
    ```bash
-   git clone https://github.com/eyejoker/one-click-translate.git
+   git clone https://github.com/phj1081/one-click-translate.git
    ```
 2. Chrome 브라우저에서 `chrome://extensions/` 접속
 3. 우측 상단의 "개발자 모드" 활성화
@@ -33,7 +28,7 @@
 3. Google 번역 페이지가 열리면 `Ctrl+V` (Mac: `Cmd+V`)로 이미지 붙여넣기
 
 ### 방법 2: 단축키 사용
-1. 번역하고 싶은 웹페이지에서 `Ctrl+Shift+2` (Mac: `Cmd+Shift+2`) 누르기
+1. 번역하고 싶은 웹페이지에서 `Ctrl+Shift+1` (Mac: `Cmd+Shift+1`) 누르기
 2. 이후 과정은 동일
 
 ## 기술 스택

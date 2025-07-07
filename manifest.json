@@ -25,8 +25,8 @@
   "commands": {
     "translate-screen": {
       "suggested_key": {
-        "default": "Ctrl+Shift+2",
-        "mac": "Command+Shift+2"
+        "default": "Ctrl+Shift+1",
+        "mac": "Command+Shift+1"
       },
       "description": "현재 화면 번역"
     }

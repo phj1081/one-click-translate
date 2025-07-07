@@ -27,14 +27,13 @@ async function translateCurrentScreen() {
     // 3. clipboard.html 페이지를 새 탭으로 열기 (이미지 데이터를 URL 파라미터로 전달)
     // 데이터가 너무 크면 storage를 사용
     if (dataUrl.length > 1000000) { // 약 1MB 이상이면 (기존 200KB에서 증가)
-      // storage에 저장하고 clipboard.html 열기를 병렬로 처리
-      const [storageResult] = await Promise.all([
-        chrome.storage.local.set({ capturedImage: dataUrl }),
-        chrome.tabs.create({
-          url: chrome.runtime.getURL('clipboard.html?storage=true'),
-          active: true
-        })
-      ]);
+      // storage에 저장
+      await chrome.storage.local.set({ capturedImage: dataUrl });
+      // clipboard.html 열기
+      await chrome.tabs.create({
+        url: chrome.runtime.getURL('clipboard.html?storage=true'),
+        active: true
+      });
     } else {
       // URL 파라미터로 전달
       await chrome.tabs.create({

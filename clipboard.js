@@ -27,9 +27,6 @@ async function copyImageToClipboard(dataUrl) {
   const statusEl = document.getElementById('status');
   
   try {
-    // 구글 번역 페이지를 미리 새 창으로 열기 (병렬 처리)
-    const translateWindow = window.open('https://translate.google.com/?sl=auto&tl=ko&op=images', '_blank');
-    
     // 이미지를 메모리에서만 로드 (미리보기 없이)
     const img = new Image();
     img.src = dataUrl;
@@ -55,6 +52,10 @@ async function copyImageToClipboard(dataUrl) {
       throw new Error('이미지 변환 실패');
     }
     
+    // 문서에 포커스 주기
+    window.focus();
+    document.body.focus();
+    
     // 클립보드에 복사
     await navigator.clipboard.write([
       new ClipboardItem({ 'image/png': blob })
@@ -62,6 +63,9 @@ async function copyImageToClipboard(dataUrl) {
     
     statusEl.textContent = '✅ 이미지가 클립보드에 복사되었습니다!';
     statusEl.style.color = 'green';
+    
+    // 구글 번역 페이지 열기
+    window.open('https://translate.google.com/?sl=auto&tl=ko&op=images', '_blank');
     
     // 안내 메시지 추가
     const instructionEl = document.createElement('div');
